@@ -1,0 +1,54 @@
+# Notion Chief of Staff configuration.
+# Copy this file to config.toml and fill it in. config.toml is git-ignored.
+# Every value here is substituted into the skill templates by scripts/render.py.
+
+[owner]
+# The name the skills use for you ("Alex says yes, and the skill saves the plan").
+name = "Alex"
+# Your own email addresses, so notion-email never treats you as someone else.
+emails = ["alex@example.com", "alex.personal@example.com"]
+# IANA time zone used for "today" and for converting calendar times.
+timezone = "America/Chicago"
+
+[company]
+# Your business or practice. Used for the work area page and To Do categories.
+name = "Example Consulting"
+# Default hourly rate, used to turn an hours goal into dollars when Goals gives no dollar figure.
+default_rate = 150
+# How per-session engagements are priced, in one sentence. Leave as is if you don't sell sessions.
+per_session_rule = "a per-session engagement counts each session at its price, and a session's hours include its prep (for example, 1 hour of prep and 1.5 hours of delivery for a $900 workshop)"
+
+[planning]
+# Your lifelong goals, as they appear on your Goals page.
+lifelong_goals = ["Financial independence", "Health for a long life", "Close friends and family", "Keep learning"]
+# The areas your year plan is organized by.
+life_areas = ["Work", "Health", "People", "Learning", "Money", "Home"]
+# The date of Day 1 in the Daily Log (the day you start tracking energy). YYYY-MM-DD.
+daily_log_start = "2026-01-05"
+# Topics day-plan uses to pick items for the "AI News today" panel. Ignored if you have no news page.
+news_interests = "AI tools for my industry, Claude and Anthropic, AI in small business"
+
+[todo]
+# Categories for the To Do List's Category select. The first is used for client and practice work.
+categories = ["Work", "Side Project", "Home", "Financial", "Family", "Personal"]
+# One sentence telling the skills how to pick a category.
+category_rules = "Work for client and practice work; Side Project for side projects; Home for the house and repairs; Financial for money and taxes; Family for family logistics; otherwise Personal."
+
+[github]
+# Leave both empty to skip GitHub. notion-github will then report that it has nothing to read.
+login = ""
+# Organizations, user accounts or single repos to read, e.g. ["org:example-org", "user:alex", "repo:client/shared-repo"].
+accounts = []
+
+[slack]
+# Client Slack channels notion-email should read. Leave empty to skip Slack.
+# Each entry: channel name, channel ID, client name, and the Notion project page ID.
+channels = [
+  # { name = "#client-shared", id = "C0123456789", client = "Client A", project = "Client A - Website", project_page_id = "0123456789abcdef0123456789abcdef" },
+]
+
+[meetups]
+# Local event sources notion-librarian checks for the Meetups list. Leave empty to skip.
+sources = [
+  # { name = "Local AI Meetup", url = "https://www.meetup.com/your-group/" },
+]
