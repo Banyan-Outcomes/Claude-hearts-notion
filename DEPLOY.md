@@ -63,8 +63,8 @@ Path B users can skip this step; the installer asks you these questions in chat.
 ### A1. Get the repo
 
 ```bash
-git clone <this repo's URL> notion-chief-of-staff
-cd notion-chief-of-staff
+git clone https://github.com/Banyan-Outcomes/Claude-hearts-notion.git
+cd Claude-hearts-notion
 cp config.example.toml config.toml
 # edit config.toml
 python3 --version    # must be 3.11 or newer

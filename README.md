@@ -2,11 +2,75 @@
 
 A set of Claude skills that turn Notion into a shared memory for all your work, keep it filed and tidy without you, and turn it into a plan each morning.
 
+## Install
+
+You need a Claude Pro, Max, Team or Enterprise plan. In the Claude app, open **Settings, Capabilities** and turn on **Code execution and file creation**. Then, under **Settings, Connectors**, connect Notion, plus at least one email account and one calendar (Gmail and Google Calendar, Microsoft 365, or both). GitHub and Slack are optional.
+
+### Option A: with Claude Code (recommended)
+
+Requires Git, Python 3.11 or newer, and Claude Code with Notion connected (run `/mcp` inside Claude Code to check).
+
+1. Clone the repo and create your config:
+
+   ```bash
+   git clone https://github.com/Banyan-Outcomes/Claude-hearts-notion.git
+   cd Claude-hearts-notion
+   cp config.example.toml config.toml
+   ```
+
+2. Open `config.toml` and fill in your name, emails, time zone, company and categories. Each field is explained in the file.
+
+3. Start Claude Code in the folder and run the installer:
+
+   ```bash
+   claude
+   ```
+
+   ```text
+   /cos-install
+   ```
+
+   It builds the Notion pages and databases, records their IDs in `ids.json`, and renders your skills into `dist/skills/`. It also fills in the dashboard, Notion Map, Goals and Energy Plan. It asks before anything it can't undo.
+
+4. In the Claude app, open **Settings, Capabilities, Skills**, choose **Upload skill**, and upload each zip in `dist/skills/`, starting with `notion-update.zip`. Turn each one on.
+
+### Option B: from the Claude app only
+
+1. On GitHub, choose **Code, Download ZIP** and unzip it.
+
+2. Make the installer skill: create a folder named `cos-install`, copy `.claude/skills/cos-install/SKILL.md` into it, and zip the folder. If you have Python, `python3 scripts/package_installer.py` does this for you.
+
+3. Upload `cos-install.zip` under **Settings, Capabilities, Skills**.
+
+4. In a new chat, attach these files and type `/cos-install`:
+   - `README.md`
+   - `templates/notion/structure.md`
+   - the files in `templates/pages/`
+   - the `SKILL.md` files in `skills/`
+   - `config.example.toml`
+
+   Claude asks for your settings, builds Notion, and gives you the ten skill zips to download.
+
+5. Upload those zips under **Settings, Capabilities, Skills**.
+
+### After installing
+
+1. Test it: run `/notion-update`, add a note to your Notion Inbox and run `/notion-inbox`, then run `/notion-email`.
+2. Use it lightly for a week. [install/first-week.md](install/first-week.md) has a day-by-day plan.
+3. Schedule the evening routine. In the Claude app, ask: "Create a scheduled task that runs /notion-eod every weekday at 9 PM my time."
+4. Run the planning kickoff in [install/kickoff.md](install/kickoff.md), then start each morning with `/day-plan`.
+
+The full walkthrough, with troubleshooting, updating and uninstalling, is in [DEPLOY.md](DEPLOY.md).
+
+---
+
+## Why it exists
+
 It was built by someone juggling about sixteen projects at once (clients, side ventures, a house, a family) with more than 200 open to-dos at the peak. Claude could help with any one of them, but only with what was brought to it, so the person was the bottleneck: whatever they forgot never reached Claude. On top of that, every AI tool kept its own memory. A Claude Code session couldn't see a chat, a Project's chats were invisible to every other chat, and switching models meant starting over.
 
 The fix: **Notion is the memory.** Every session, in any tool, reads from and writes to the same pages. Skills do the filing. A planning layer reads it all each morning and proposes a doable day.
 
-> **New here?** Read this page to understand how to use the system, then follow [DEPLOY.md](DEPLOY.md) to install it.
+> The rest of this page explains how to use the system day to day.
 
 ---
 
